@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+:root {
+  --background: #09090b;
+  --surface: #111113;
+  --surface-elevated: #1a1a1e;
+  --foreground: #fafafa;
+  --border: rgba(255, 255, 255, 0.08);
+  --chat-received: #1e1e24;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-chat-received: var(--chat-received);
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+.input-field {
+  @apply w-full rounded-xl border border-border bg-surface-elevated px-4 py-3 text-sm text-white placeholder:text-zinc-500 focus:border-indigo-500/50 focus:outline-none focus:ring-1 focus:ring-indigo-500/30 transition-colors;
+}
+
+.chat-pattern {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 0
+  );
+  background-size: 24px 24px;
+}
+
+.safe-top {
+  padding-top: max(0.75rem, env(safe-area-inset-top));
+}
+
+.safe-bottom {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.25s ease-out;
+}
+
+.typing-dot {
+  @apply h-2 w-2 rounded-full bg-zinc-500;
+  animation: typing-bounce 1.2s infinite ease-in-out;
+}
+
+.animation-delay-150 {
+  animation-delay: 0.15s;
+}
+
+.animation-delay-300 {
+  animation-delay: 0.3s;
+}
+
+@keyframes typing-bounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+/* Smooth scrolling on iOS */
+.overflow-y-auto {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
